@@ -11,22 +11,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm">
+                    {% for match in umatches %}
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
-                          <h5 class="card-title">{{match1}}</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">{{match}}</h5>
+                            <p class="card-text">Live</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
                         </div>
                       </div>
-                </div>
-                <div class="col-sm">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                          <h5 class="card-title">{{match2}}</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
+                      {% endfor %}
                 </div>
             </div>
         </div>

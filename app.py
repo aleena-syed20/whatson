@@ -1,13 +1,15 @@
 from flask import Flask, render_template
-from flask import jsonify
+from datetime import date
 app = Flask(__name__)
 
 import requests
 import constants
 
 url = constants.API_URL
+today = date.today()
+d1 = today.strftime("%Y%m%d")
 
-querystring = {"Category":"tennis","Date":"20210701"}
+querystring = {"Category":"tennis","Date":d1}
 
 headers = {
     'x-rapidapi-key': constants.API_KEY,
@@ -23,9 +25,13 @@ def live_matches():
     matches = []
     for index in jsonResponse["Stages"]:
         matches.append(index["Cnm"])
-    return render_template('index.html', match1=matches[0], match2=matches[1])
-    #return str(set(matches))
-        #notify("Match", index["Cnm"])
+    print(matches)
+    if "ATP" in matches:
+        matches.remove("ATP")
+    if "WTA" in matches:
+         matches.remove("WTA")
+    umatches = set(matches)
+    return render_template('index.html', umatches=umatches)
 
 
 
