@@ -4,6 +4,8 @@ app = Flask(__name__)
 
 import requests
 import constants
+import tweepy
+
 
 url = constants.API_URL
 today = date.today()
@@ -32,6 +34,19 @@ def live_matches():
          matches.remove("WTA")
     umatches = set(matches)
     return render_template('index.html', umatches=umatches)
+
+@app.route("/tweets")
+def tweets():
+    auth = tweepy.OAuthHandler(constants.TWEEPY_API_KEY, constants.TWEEPY_API_SECRET_KEY)
+    api = tweepy.API(auth)
+
+    screen_name = "josemorgado"
+    user = api.get_user(screen_name)
+    ID = user.id_str
+    number_of_tweets = 5
+    tweets = api.user_timeline(user_id=ID, count=number_of_tweets, include_rts = False, tweet_mode="extended")
+    tweets = list(tweets)
+    return render_template('tweets.html', tweets=tweets)
 
 
 

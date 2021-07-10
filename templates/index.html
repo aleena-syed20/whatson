@@ -12,6 +12,14 @@
     </style>
     <body>
         <div class="container h-100">
+            <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('tweets') }}">Tweets</a>
+                </li>
+            </ul>    
             <div class="row h-100 justify-content-center align-items-center">
                 {% for match in umatches %}
                 <div class="col">
@@ -19,7 +27,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{match}}</h5>
                             <p class="card-text">Live</p>
-                            <a href="https://www.google.com/search?q=" class="btn btn-primary">Go somewhere</a>
+                            <a href="https://www.google.com/search?q="
+                            class="btn btn-primary">Go somewhere</a>
                         </div>
                       </div>
                 </div>
